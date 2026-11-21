@@ -405,6 +405,33 @@ footer { background: #0b1a14; color: rgba(255,255,255,0.8); padding: 60px 0 0; b
 .footer-links a:hover{transform:translateX(4px)}
 .footer-social a:hover{transform:translateY(-3px)}
 
+.made-by{display:inline-flex;align-items:center;gap:6px}
+.made-by .heart{color:#ef4444;animation:beat 1.4s infinite}
+.made-by a{color:var(--accent-light);font-weight:700;transition:color .2s}
+.made-by a:hover{color:#fff}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+/* service modal */
+.service-card{cursor:pointer}
+.service-card:focus-visible{outline:3px solid var(--accent-light);outline-offset:3px}
+.svc-modal{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,40,30,.72);backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.svc-modal.open{opacity:1;visibility:visible}
+.svc-dialog{position:relative;background:#fff;border-radius:var(--radius-lg);width:100%;max-width:680px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 70px rgba(0,0,0,.4);transform:translateY(24px) scale(.97);transition:transform .35s}
+.svc-modal.open .svc-dialog{transform:none}
+.svc-close{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:none;background:rgba(6,68,51,.85);color:#fff;font-size:1.3rem;line-height:1;cursor:pointer;transition:background .2s,transform .25s}
+.svc-close:hover{background:var(--primary);transform:rotate(90deg)}
+.svc-body{padding:34px 30px 30px}
+.svc-num{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.svc-title{font-size:1.6rem;font-weight:900;color:var(--primary-dark);margin-bottom:10px;padding-right:44px}
+.svc-desc{color:var(--text-light);font-size:.96rem;margin-bottom:20px}
+.svc-cols{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:24px}
+.svc-cols h4{font-family:var(--font-body);font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--primary-dark);margin-bottom:10px}
+.svc-cols li{position:relative;padding-left:22px;margin-bottom:8px;font-size:.88rem;color:var(--text-light)}
+.svc-cols li::before{content:'';position:absolute;left:0;top:.45em;width:12px;height:12px;border-radius:50%;background:var(--accent-light)}
+.svc-note{background:var(--light-green);border-left:4px solid var(--primary);border-radius:8px;padding:12px 16px;font-size:.85rem;color:var(--primary-dark);margin-bottom:22px}
+.svc-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:600px){.svc-cols{grid-template-columns:1fr}.svc-body{padding:30px 20px 24px}}
+
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
@@ -592,7 +619,7 @@ footer { background: #0b1a14; color: rgba(255,255,255,0.8); padding: 60px 0 0; b
 
       <article class="service-card sc-1" id="home-deep-cleaning">
         <div class="service-card-band"></div>
-        <div class="service-card-img-wrap"><img src="images/svc-home-deep.jpg" alt="Home deep cleaning" class="service-card-img" width="400" height="170" loading="lazy"></div>
+        <div class="service-card-img-wrap"><img src="images/House-cleaning.webp" alt="Home deep cleaning" class="service-card-img" width="400" height="170" loading="lazy"></div>
         <div class="service-card-body">
           <div class="service-card-num">Service 01</div>
           <h3 class="service-card-title">Home Deep Cleaning</h3>
@@ -625,7 +652,7 @@ footer { background: #0b1a14; color: rgba(255,255,255,0.8); padding: 60px 0 0; b
 
       <article class="service-card sc-4" id="water-tank-cleaning">
         <div class="service-card-band"></div>
-        <div class="service-card-img-wrap"><img src="images/svc-water-tank.jpg" alt="Water tank after cleaning" class="service-card-img" width="400" height="170" loading="lazy"></div>
+        <div class="service-card-img-wrap"><img src="images/water-tank.webp" alt="Water tank after cleaning" class="service-card-img" width="400" height="170" loading="lazy"></div>
         <div class="service-card-body">
           <div class="service-card-num">Service 04</div>
           <h3 class="service-card-title">Water Tank Cleaning</h3>
@@ -636,7 +663,7 @@ footer { background: #0b1a14; color: rgba(255,255,255,0.8); padding: 60px 0 0; b
 
       <article class="service-card sc-5" id="sump-cleaning">
         <div class="service-card-band"></div>
-        <div class="service-card-img-wrap"><img src="images/svc-sump.jpg" alt="Sump cleaning with a pressure hose" class="service-card-img" width="400" height="170" loading="lazy"></div>
+        <div class="service-card-img-wrap"><img src="images/sump.webp" alt="Sump cleaning with a pressure hose" class="service-card-img" width="400" height="170" loading="lazy"></div>
         <div class="service-card-body">
           <div class="service-card-num">Service 05</div>
           <h3 class="service-card-title">Sump Cleaning</h3>
@@ -943,25 +970,45 @@ footer { background: #0b1a14; color: rgba(255,255,255,0.8); padding: 60px 0 0; b
         </ul>
       </div>
       <div>
-        <div class="footer-col-title">Our Services</div>
+        <div class="footer-col-title">Terms &amp; Policies</div>
         <ul class="footer-links">
-          <li><a href="#home-deep-cleaning">Home Deep Cleaning</a></li>
-          <li><a href="#kitchen-cleaning">Kitchen Cleaning</a></li>
-          <li><a href="#bathroom-cleaning">Bathroom Cleaning</a></li>
-          <li><a href="#water-tank-cleaning">Water Tank Cleaning</a></li>
-          <li><a href="#sump-cleaning">Sump Cleaning</a></li>
-          <li><a href="#tiles-cleaning">Tiles Cleaning</a></li>
-          <li><a href="#garden-cleaning">Garden Cleaning</a></li>
-          <li><a href="#home-shifting">Home Shifting</a></li>
+          <li><a href="terms-and-conditions.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="cancellation-refund-policy.html">Cancellation &amp; Refund Policy</a></li>
+          <li><a href="payment-pricing-policy.html">Payment &amp; Pricing Policy</a></li>
+          <li><a href="service-policy.html">Service &amp; Quality Policy</a></li>
+          <li><a href="damage-liability-policy.html">Damage &amp; Liability Policy</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="footerYear"></span> All Time Cleaning Service, Govindareddypalayam, Vellore. All rights reserved.</span>
-      <span>Professional <strong style="color:rgba(255,255,255,0.4);">Cleaning Services in Vellore</strong></span>
+      <span class="made-by">Made with <svg class="heart" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-label="love"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 5 6 5c2 0 3.4 1.1 4.2 2.4h3.6C14.6 6.1 16 5 18 5c3.3 0 5.1 3.4 3.6 6.8C19.5 16.4 12 21 12 21z"/></svg> by <a href="https://e2o.in" target="_blank" rel="noopener">E2o Tech</a></span>
     </div>
   </div>
 </footer>
+
+<!-- SERVICE MODAL -->
+<div class="svc-modal" id="svcModal" aria-hidden="true">
+  <div class="svc-dialog" role="dialog" aria-modal="true" aria-labelledby="svcTitle">
+    <button type="button" class="svc-close" id="svcClose" aria-label="Close">&times;</button>
+    <!-- <img class="svc-img" id="svcImg" src="" alt=""> -->
+    <div class="svc-body">
+      <div class="svc-num" id="svcNum"></div>
+      <h3 class="svc-title" id="svcTitle"></h3>
+      <p class="svc-desc" id="svcDesc"></p>
+      <div class="svc-cols">
+        <div><h4>What's included</h4><ul id="svcInc"></ul></div>
+        <div><h4>Good to know</h4><ul id="svcKnow"></ul></div>
+      </div>
+      <div class="svc-note">Pricing depends on the size and condition of the space. We give you a clear quote before any work begins.</div>
+      <div class="svc-actions">
+        <a id="svcWa" class="btn btn-green" target="_blank" rel="noopener"><svg width="15" height="15" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>Book on WhatsApp</a>
+        <a href="tel:+916385180325" class="btn btn-primary"><svg width="15" height="15" fill="currentColor" aria-hidden="true"><use href="#i-phone"/></svg>Call Now</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 document.getElementById('footerYear').textContent = new Date().getFullYear();
@@ -1042,6 +1089,96 @@ window.addEventListener('scroll', function () { nav.classList.toggle('scrolled',
   } else {
     targets.forEach(function (el) { el.classList.add('in'); });
   }
+})();
+
+// Service modal
+(function () {
+  var DATA = {
+    'home-deep-cleaning': {
+      inc: ['Floors, tiles and skirting', 'Fans, lights and window glass', 'Cupboards, shelves and furniture surfaces', 'Kitchen and bathrooms', 'Corners, dust and cobwebs'],
+      know: ['Good for new homes, festivals and move-in or move-out', 'Water and electricity needed at the site', 'Our team brings equipment and products']
+    },
+    'kitchen-cleaning': {
+      inc: ['Counters and cabinets', 'Chimney and stove degreasing', 'Sink and taps', 'Wall tiles and floor'],
+      know: ['Heavily oiled kitchens may need more time', 'Tell us if you want cabinets cleaned inside', 'Water and electricity needed at the site']
+    },
+    'bathroom-cleaning': {
+      inc: ['Tiles and grout scrubbing', 'Toilet, basin and fittings', 'Drains and floor traps', 'Hard-water stain and odour removal'],
+      know: ['Number of bathrooms helps us quote accurately', 'Water supply needed at the site']
+    },
+    'water-tank-cleaning': {
+      inc: ['Draining the tank', 'Scrubbing walls and floor', 'Disinfection', 'Final rinse'],
+      know: ['Overhead and underground tanks', 'Water supply is paused during the job', 'Tell us the tank type and capacity for a quote']
+    },
+    'sump-cleaning': {
+      inc: ['Removal of sludge and sediment', 'Washing of walls and floor', 'Disinfection'],
+      know: ['Tell us the sump capacity and access point', 'Water supply is paused during the job']
+    },
+    'tiles-cleaning': {
+      inc: ['Machine scrubbing of floor tiles', 'Wall tile cleaning', 'Grout cleaning', 'Shine restoration'],
+      know: ['Tell us the area in sq ft for a quote', 'Electricity needed for the machine']
+    },
+    'garden-cleaning': {
+      inc: ['Clearing leaves and weeds', 'Removal of garden waste', 'Tidying outdoor and balcony areas', 'Hedge trimming'],
+      know: ['Tell us the garden size and condition', 'Plant waste removal can be discussed in your quote']
+    },
+    'home-shifting': {
+      inc: ['Careful packing of household goods', 'Loading and unloading', 'Moving to your new home', 'Cleaning support at both homes'],
+      know: ['Tell us about fragile or high-value items in advance', 'Share both addresses and your preferred date']
+    }
+  };
+
+  var modal = document.getElementById('svcModal');
+  var closeBtn = document.getElementById('svcClose');
+  var lastFocus = null;
+
+  function fill(id, items) {
+    document.getElementById(id).innerHTML = items.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+  }
+
+  function openModal(card) {
+    var d = DATA[card.id] || { inc: [], know: [] };
+    var img = card.querySelector('.service-card-img');
+    var title = card.querySelector('.service-card-title').textContent;
+    document.getElementById('svcNum').textContent = card.querySelector('.service-card-num').textContent;
+    document.getElementById('svcTitle').textContent = title;
+    document.getElementById('svcDesc').textContent = card.querySelector('.service-card-desc').textContent;
+    fill('svcInc', d.inc);
+    fill('svcKnow', d.know);
+    document.getElementById('svcWa').href = 'https://wa.me/916385180325?text=' +
+      encodeURIComponent('Hello All Time Cleaning Service, I need ' + title + ' service.');
+    lastFocus = document.activeElement;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('.service-card').forEach(function (card) {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', 'View details: ' + card.querySelector('.service-card-title').textContent);
+    card.addEventListener('click', function (e) {
+      e.preventDefault();
+      openModal(card);
+    });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
 })();
 </script>
 </body>
